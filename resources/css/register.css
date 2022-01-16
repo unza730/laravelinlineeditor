@@ -1,0 +1,59 @@
+.maincontainer {
+  margin-top: 20px;
+    padding: 5px;
+    background-color: #2e4241;
+    /* background-color: #35858B; */
+        /* background-color: #287075; */
+    /* background-color: #189AB4; */
+    /* background-color: rgba(0, 0, 0, 0.596); */
+    color: white;
+    min-height: 60vh;
+    border-top: 2px solid gray;
+    border-radius: 7px;
+     border-left: 2px solid rgb(102, 102, 102);
+
+     
+}
+.innercontainer {
+    padding: 5px;
+    margin: 0px 40px;
+}
+label {
+    margin: 10px;
+}
+input {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    width: 90%;
+  
+}
+input:hover {
+      background-color: black;
+         color: white;
+    }
+.createaccount {
+   text-align: center;
+    padding: 10px;
+    
+}
+.createaccount button{
+        width: 74%;
+     font-weight: bold;
+     font-size: 17px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+}
+.createaccount button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.alreadyaccount a{
+    color: rgb(0, 0, 0);
+}
+.alreadyaccount a:hover {
+    color: white;
+}
