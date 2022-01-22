@@ -1,23 +1,26 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<!-- jquery -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laravel 8 Table Inline Edit Using JQuery Editable - NiceSnippest.com</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/css/jquery-editable.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/jquery-editable/js/jquery-editable-poshytip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-<!-- jquery -->
-    <title>Dashboard</title>
-    <style>
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+<style type="text/css">
+      .panel-info{
+    	margin-top:80px;
+    	/* line-height:50px; */
+    }
     body{
+        margin:0;
+        padding:0;
       height: 100vh;
     width: 100%;
     background-image: url("https://wallpaperaccess.com/full/472038.jpg"); 
@@ -25,9 +28,19 @@
     background-repeat: no-repeat;
     background-size: cover;
     backdrop-filter: blur(7px);
+    background-attachment:fixed;
     color: white;
     }
+     .lab{
+      color: #FFC600 !important;
+      /* color: #612897 !important; */
+      font-weight: bold;
+    }
+.container {
+   margin-top: 2% !important;
+}
     .mainn {
+          
     /* margin: 5px;
     padding: 5px; */
     background-color: rgba(75, 71, 71, 0.515);
@@ -39,18 +52,22 @@
      border-left: 2px solid gray;
      
 }
-    .lab{
-      color: #FFC600 !important;
-      /* color: #612897 !important; */
-      font-weight: bold;
-    }
+a{
+    color: white !important;
 
-    </style>
-  </head>
-  <body>
+}
+input {
+    color: black !important;
+}
+</style>
+<body>
+
+       
     <div class="container">
+    <!-- <div class="container"> -->
     <div class="row">
-    <div class="col-md-4 col-md-offset-3  mt-5 p-3 bg-dark">
+      <div class="col-md-7 col-md-offset-3 mt-2 p-3 bg-dark">
+       <h2 class="text-center mt-1">Enter Data</h2>
     <form action="" method="POST">
      @csrf
   <div class="mb-3">
@@ -77,66 +94,49 @@
 </div>
 @endif
     </div>
-    <div class="col-md-8 col-md-offset-3 mt-5">
-    <h4>Task Status</h4><hr>
-    <table class="table  mainn">
-  <thead>
-    <tr>
-      <th scope="col">S.No</th>
-      <th scope="col">Name</th>
-      <th scope="col">Agent Name</th>
-      <th scope="col">No of Tasks</th>
-      <th scope="col">Task Status</th>
-       <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <!-- @foreach ($task as $task)
-    <tr>
-      <th scope="row">{{$task->id}}</th>
-      <td>{{$task->name}}</td>
-      <td>{{$task->agentname}}</td>
-      <td>{{$task->nooftask}}</td>
-      <td>{{$task->taskstatus}}</td>
-      <td>
-      <a href="" class="btn btn-outline-primary btn-sm">Edit</a>
-      <a href="" class="btn btn-outline-danger btn-sm">Delete</a>
-     
-      </td>
-    </tr>
-   @endforeach -->
-      @foreach($task as $task)
+    	<div class="col-md-7 col-md-offset-2 ">
+        <!-- <h2 class="text-center">Laravel 8 Table Inline Edit Using JQuery Editable - NiceSnippest.com</h2> -->
+        <div class="panel panel-info mainn ">
+            <div class="panel-heading">Laravel 8 Table Inline Edit Using jQuery editable</div>
+            
+                <table class="table table-bordered data-table mainn">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Agent Name</th>
+                            <th>No of Task</th>
+                            <th>Task Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="mainn">
+                        @foreach($task as $task)
                             <tr>
-                                <td>{{$task->id}}</td>
+                                <td>{{ $task->id }}</td>
                                 <td>
                                     <a href="" class="update" data-name="name" data-type="text" data-pk="{{ $task->id }}" data-title="Enter name">{{ $task->name }}</a>
                                 </td>
                                 <td>
-                                    <a href="" class="update" data-name="detail" data-type="text" data-pk="{{ $task->id }}" data-title="Enter agentname">{{ $task->agentname }}</a>
+                                    <a href="" class="update" data-name="agentname" data-type="text" data-pk="{{ $task->id }}" data-title="Enter Agent Name">{{ $task->agentname }}</a>
                                 </td>
-                                <td>
-                                    <a href="" class="update" data-name="detail" data-type="text" data-pk="{{ $task->id }}" data-title="Enter nooftask">{{ $task->nooftask }}</a>
+                                 <td>
+                                    <a href="" class="update" data-name="nooftask" data-type="text" data-pk="{{ $task->id }}" data-title="Enter No of Task">{{ $task->nooftask }}</a>
                                 </td>
-                                <td>
-                                    <a href="" class="update" data-name="detail" data-type="text" data-pk="{{ $task->id }}" data-title="Enter taskstatus">{{ $task->taskstatus }}</a>
+                                 <td>
+                                    <a href="" class="update" data-name="taskstatus" data-type="text" data-pk="{{ $task->id }}" data-title="Enter Task Status">{{ $task->taskstatus }}</a>
                                 </td>
                                 <td>
                                     <a class="deleteProduct btn btn-xs btn-danger" data-id="{{ $task->id }}">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
-  </tbody>
-</table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
     </div>
-    </div>
-    </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    
-    <script type="text/javascript">
+	<script type="text/javascript">
 	    $.fn.editable.defaults.mode = 'inline';
 
 	    $.ajaxSetup({
@@ -146,7 +146,7 @@
 	    });
 
 	    $('.update').editable({
-	        url: "{{ route('task.task') }}",
+	        url: "{{ route('product') }}",
 	        type: 'text',
 	        pk: 1,
 	        name: 'name',
@@ -168,13 +168,6 @@
 	            }
 	        });
 	    });
-	// </script>
-    </script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-  </body>
+	</script>
+</body>
 </html>
